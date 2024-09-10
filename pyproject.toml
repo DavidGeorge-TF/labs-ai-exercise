@@ -2,9 +2,7 @@
 name = "labs-ai-exercise"
 version = "0.1.0"
 description = "Add your description here"
-dependencies = [
-    "spacy>=3.7.6",
-]
+dependencies = ["spacy>=3.7.6"]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -21,3 +19,28 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/labs_ai_exercise"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "S603", "S607", "ANN101", "ANN102", "COM812", "ISC001"]
+pylint.max-args = 20
+pylint.max-branches = 20
+
+[tool.ruff]
+show-fixes = true
+line-length = 150
+target-version = "py39"
+
+[tool.ruff.lint.pep8-naming]
+# Allow Pydantic's `@validator` decorator to trigger class method treatment.
+classmethod-decorators = ["classmethod", "pydantic.validator"]
+
+[tool.mypy]
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+show_column_numbers = true
+disallow_untyped_defs = true
